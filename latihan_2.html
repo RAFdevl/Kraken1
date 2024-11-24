@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kraken Private Server</title>
+  <link rel="icon" href="images/krakeee-removebg-preview.png" type="image">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #6ecff6, #0077b6); /* Gradasi biru laut */
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .title {
+      font-size: 48px;
+      font-weight: bold;
+      color: #fdfd96; /* Warna kuning pastel */
+      text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+      margin-bottom: 0;
+    }
+
+    .subtitle {
+      font-size: 22px;
+      color: #f1f1f1;
+      margin: 0;
+    }
+
+    .description {
+      margin: 20px auto;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #fff;
+      max-width: 700px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 18px;
+      color: #fff;
+      background-color: #0077b6; /* Biru laut */
+      border: 2px solid #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .button:hover {
+      background-color: #023e8a; /* Biru lebih gelap */
+      transform: scale(1.1);
+    }
+
+    .video-box {
+      margin: 20px auto;
+      max-width: 500px;
+      border: 2px solid #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .video-box img {
+      width: 100%;
+      display: block;
+    }
+     /* Menu Navigasi */
+     .menu {
+      position: relative;
+      bottom: 20px;
+      margin-top: 40px;
+      background: rgba(0, 119, 182, 0.9); /* Biru semi-transparan */
+      border: 2px solid #fff;
+      border-radius: 10px;
+      padding: 10px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      width: 80%;
+      max-width: 600px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .menu-item {
+      text-align: center;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .menu-item:hover {
+      color: #90e0ef;
+      transform: scale(1.1);
+    }
+
+    .menu-item i {
+      font-size: 24px;
+      display: block;
+      margin-bottom: 5px;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .menu-item:hover i {
+      color: #90e0ef;
+    }
+     /* Sidebar */
+     .sidebar {
+      position: fixed;
+      left: -250px; /* Tersembunyi secara default */
+      top: 0;
+      width: 250px;
+      height: 100%;
+      background-color: #0077b6; /* Biru laut */
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 30px;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+      transition: 0.3s; /* Animasi transisi */
+    }
+
+    .sidebar.open {
+      left: 0; /* Tampil saat terbuka */
+    }
+
+    .menu-item {
+      width: 100%;
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      margin-bottom: 15px;
+      transition: all 0.3s ease-in-out;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .menu-item:hover {
+      background-color: #023e8a; /* Biru lebih gelap */
+    }
+
+    .menu-item i {
+      margin-right: 10px;
+    }
+
+    /* Konten utama */
+    .content {
+      padding: 20px;
+    }
+
+    .content .title {
+      font-size: 48px;
+      font-weight: bold;
+      color: #fdfd96;
+      text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+    }
+
+    .content .subtitle {
+      font-size: 22px;
+      color: #f1f1f1;
+    }
+
+    .content .description {
+      margin: 20px auto;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #fff;
+      max-width: 700px;
+    }
+
+    /* Hamburger Button */
+    .hamburger {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      width: 30px;
+      height: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      z-index: 1000; /* Agar berada di atas */
+    }
+
+    .hamburger span {
+      width: 100%;
+      height: 4px;
+      background-color: #fff;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* Efek Hamburger Aktif */
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(10px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-10px) rotate(-45deg);
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 36px;
+      color: #fdfd96;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Container scroll horizontal */
+    .character-container {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 40px 20px;
+      margin: 20px auto;
+      height: 400px;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Kotak karakter */
+    .character-card {
+      flex-shrink: 0;
+      width: 250px;
+      height: 350px;
+      background-image: url("images/graffiti_street_art_colorful_122060_2560x1440.jpg");
+      color: #1d3557;
+      border-radius: 15px;
+      text-align: center;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .character-card:hover {
+      transform: scale(1.1);
+      transition: 0.3s ease;
+    }
+
+    .character-image {
+  width: 150px; /* Lebar elemen */
+  height: 30px; /* Tinggi elemen (ubah sesuai kebutuhan) */
+  background-color: #00060a; /* Warna latar */
+  margin: 15px 0; /* Margin atas dan bawah */
+  display: flex; /* Untuk menampilkan teks di tengah */
+  align-items: center; /* Pusatkan secara vertikal */
+  justify-content: center; /* Pusatkan secara horizontal */
+  font-size: 24px; /* Ukuran teks */
+  font-weight: bold; /* Ketebalan teks */
+  color: #f1faee; /* Warna teks */
+  border-radius: 10px; /* Beri sedikit sudut jika ingin tampilan modern */
+}
+
+.character-card2 {
+      flex-shrink: 0;
+      width: 250px;
+      height: 350px;
+      background-image: url("images/kuning.jpg");
+      color: #1d3557;
+      border-radius: 15px;
+      text-align: center;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .character-card:hover {
+      transform: scale(1.1);
+      transition: 0.3s ease;
+    }
+    .character-image2 {
+  width: 150px; /* Lebar elemen */
+  height: 30px; /* Tinggi elemen (ubah sesuai kebutuhan) */
+  background-color: #000000; /* Warna latar */
+  margin: 15px 0; /* Margin atas dan bawah */
+  display: flex; /* Untuk menampilkan teks di tengah */
+  align-items: center; /* Pusatkan secara vertikal */
+  justify-content: center; /* Pusatkan secara horizontal */
+  font-size: 24px; /* Ukuran teks */
+  font-weight: bold; /* Ketebalan teks */
+  color: #f1faee; /* Warna teks */
+  border-radius: 10px; /* Beri sedikit sudut jika ingin tampilan modern */
+}
+.character-card3 {
+      flex-shrink: 0;
+      width: 250px;
+      height: 350px;
+      background-image: url("images/kuning.jpg");
+      color: #1d3557;
+      border-radius: 15px;
+      text-align: center;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .character-image3 {
+  width: 150px; /* Lebar elemen */
+  height: 30px; /* Tinggi elemen (ubah sesuai kebutuhan) */
+  background-color: #000000; /* Warna latar */
+  margin: 15px 0; /* Margin atas dan bawah */
+  display: flex; /* Untuk menampilkan teks di tengah */
+  align-items: center; /* Pusatkan secara vertikal */
+  justify-content: center; /* Pusatkan secara horizontal */
+  font-size: 24px; /* Ukuran teks */
+  font-weight: bold; /* Ketebalan teks */
+  color: #f1faee; /* Warna teks */
+  border-radius: 10px; /* Beri sedikit sudut jika ingin tampilan modern */
+}
+.character-card4 {
+      flex-shrink: 0;
+      width: 250px;
+      height: 350px;
+      background-image: url("images/graffiti_street_art_colorful_122060_2560x1440.jpg");
+      color: #1d3557;
+      border-radius: 15px;
+      text-align: center;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .character-image4 {
+  width: 150px;
+  height: 30px; /* Tinggi elemen (ubah sesuai kebutuhan) */
+  background-color: #000000; /* Warna latar */
+  margin: 15px 0; /* Margin atas dan bawah */
+  display: flex; /* Untuk menampilkan teks di tengah */
+  align-items: center; /* Pusatkan secara vertikal */
+  justify-content: center; /* Pusatkan secara horizontal */
+  font-size: 24px; /* Ukuran teks */
+  font-weight: bold; /* Ketebalan teks */
+  color: #f1faee; /* Warna teks */
+  border-radius: 10px; /* Beri sedikit sudut jika ingin tampilan modern */
+}
+    .character-name {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .select-button {
+      background-color: #e63946;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .select-button:hover {
+      background-color: #a60624;
+    }
+
+    /* Tombol navigasi */
+    .scroll-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #1d3557;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      transition: background-color 0.3s ease;
+    }
+
+    .scroll-button:hover {
+      background-color: #457b9d;
+    }
+
+    .scroll-left {
+      left: 20px;
+    }
+
+    .scroll-right {
+      right: 20px;
+    }
+    .footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+  }
+  </style>
+</head>
+<body>
+   <!-- Hamburger Button -->
+   <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Sidebar Menu -->
+  <div class="sidebar" id="sidebar">
+    <a href="#" class="menu-item">
+      <i class="fas fa-home"></i> Home
+    </a>
+    <a href="#" class="menu-item">
+      <i class="fas fa-star"></i> Features
+    </a>
+    <a href="#" class="menu-item">
+      <i class="fas fa-info-circle"></i> About
+    </a>
+    <a href="contactus.html" class="menu-item">
+      <i class="fas fa-envelope"></i> Contact
+    </a>
+    <a href="grup.html" class="menu-item">
+        <i class="fas fa-envelope"></i> Grup
+      </a>
+  </div>
+  </div>
+  <div class="container">
+    <img src="images/krakeee-removebg-preview.png" alt="" height="200px">
+      <h2 class="subtitle">Sail Into Adventure</h2>
+      <p class="description">
+        Dive into Kraken Private Server, where the sea meets creativity! Kraken PS is a private server play with other players like build the world, farming, gambling and many more. So what are ya waiting for go play and have fun!!
+      </p>
+      <div class="video-box">
+        <img src="images/gt.jpg" alt="Kraken-PS">
+        <p>World Of The Day</p>
+      </div>
+      <a href="downloadsss.html" class="button">Play Kraken-PS</a>
+    </div>
+    <audio autoplay controls src="multimedia/Growtopia OST - Theme.mp3"></audio>
+    <script>
+        // JavaScript untuk Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+    
+        // Toggle menu saat hamburger diklik
+        hamburger.addEventListener('click', () => {
+          sidebar.classList.toggle('open');
+          hamburger.classList.toggle('active');
+        });
+      </script>
+       <h1>Meet Kraken Staff</h1>
+
+      
+     
+       <!-- Container karakter -->
+       <div class="character-container" id="characterContainer">
+     
+         <div class="character-card">
+           <div class="character-image">Kraken</div>
+           <img src="images/kray-removebg-preview.png" alt="" width="240px">
+           <div class="character-name" style="color: wheat;">Media Sosial</div>
+           <a href="https://discord.gg/HTpzHtpx"><button class="select-button">Discord</button>
+           </a>
+         </div>
+         <div class="character-card">
+           <div class="character-image2">R4F</div>
+           <img src="images/all-removebg-preview.png" alt="" width="200px">
+           <b><div class="character-name2" style="color: wheat;">Media Sosial</div></b>
+           <a href=""><button class="select-button">Discord</button>
+           </a>
+         </div>
+         <div class="character-card">
+           <div class="character-image3">potato</div>
+           <img src="images/all-removebg-preview.png" alt="" width="200px">
+          <b><div class="character-name3" style="color: wheat;">Media Sosial</div></b>
+           <a href=""><button class="select-button">Discord</button>
+           </a>
+         </div>
+         <div class="character-card">
+           <div class="character-image4">Ucis</div>
+           <img src="images/all-removebg-preview.png" alt="" width="200px">
+           <b><div class="character-name4" style="color: wheat;">Media Sosial</div></b>
+           <a href=""><button class="select-button">Discord</button>
+           </a>
+         </div>
+       </div>
+     
+       <script>
+         // JavaScript untuk navigasi scroll
+         const characterContainer = document.getElementById('characterContainer');
+     
+         function scrollLeft() {
+           characterContainer.scrollBy({
+             left: -300,
+             behavior: 'smooth',
+           });
+         }
+     
+         function scrollRight() {
+           characterContainer.scrollBy({
+             left: 300,
+             behavior: 'smooth',
+           });
+         }
+       </script>
+        <footer>
+            <p>&copy; 2024. Kraken Team All Right Reserved.</p>
+        </footer>
+</body>
+</html>

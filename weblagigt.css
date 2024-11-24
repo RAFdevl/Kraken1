@@ -1,0 +1,137 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+  }
+  
+  /* Header */
+  .header {
+    background-color: #457b9d;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+  
+  .header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+  
+  .header p {
+    font-size: 18px;
+  }
+  
+  /* Main Content */
+  .main-content {
+    padding: 40px 0;
+  }
+  .containers {
+    display: flex; /* Aktifkan Flexbox */
+    justify-content: center; /* Posisikan elemen secara horizontal di tengah */
+    align-items: center; /* Posisikan elemen secara vertikal di tengah */
+    height: 100vh; /* Pastikan kontainer memiliki tinggi penuh */
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+  
+  /* File Item */
+  .file-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .file-item {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    width: 20%;
+    overflow: hidden;
+  }
+  .file-items {
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    width: 20%;
+    overflow: hidden;
+  }
+  .file-items img {
+    width: 100%;
+    height: auto;
+  }
+  .jikaa{
+    width: 600px;
+    height: 60px;
+    justify-content: right;
+  }
+  
+  .file-item img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .file-info {
+    padding: 20px;
+  }
+  
+  .file-info h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+  
+  .file-info p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .download-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #457b9d;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .download-btn:hover {
+    background-color: #1d3557;
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+  }
+  
+  @media (max-width: 768px) {
+    .file-item {
+      width: 100%;
+    }
+  }
+  

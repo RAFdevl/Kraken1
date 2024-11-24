@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background: #0a57af41;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+.gambar-berita {
+    width: 300%;
+    height: 300%;
+    align-items: end
+}
+
+.game-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.game-item {
+    background: #ffffff3b;
+    border: 1px solid #ffffff3b;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: 30%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.game-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+footer {
+    text-align: center;
+    padding: 1px 0;
+    background: #0603d4ec;
+    color: #fff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+.button {
+    background-color: #f52500; /* Hijau */
+    color: white; /* Teks putih */
+    padding: 15px 32px; /* Padding */
+    text-align: center; /* Teks di tengah */
+    text-decoration: none; /* Tanpa garis bawah */
+    display: inline-block; /* Inline block */
+    font-size: 16px; /* Ukuran font */
+    margin: 4px 2px; /* Margin */
+    cursor: pointer; /* Pointer saat hover */
+    border: none; /* Tanpa border */
+    border-radius: 8px; /* Sudut melengkung */
+    transition: background-color 0.3s; /* Transisi warna */
+}
+
+.button:hover {
+    background-color: #ff0000; /* Warna saat hover */
+}
